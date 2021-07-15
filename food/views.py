@@ -1,4 +1,11 @@
 from django.shortcuts import render
+from .models import *
 def index(request):
-    return render(request, 'food/index.html')
-# Create your views here.
+    categories = Category.objects.all()
+    ctx={
+        'categories':categories,
+    }
+    return render(request, 'food/index.html',ctx)
+
+def main_order(request):
+    return  render(request, 'product/order.html')

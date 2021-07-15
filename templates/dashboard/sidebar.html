@@ -4,23 +4,20 @@
 <aside class="menu-sidebar d-none d-lg-block">
     <div class="logo">
         <a href="#">
-            <img src="{% static 'images/icon/logo.png' %}" alt="Cool Admin" />
+            <img src="{% static 'dashboard/images/icon/logo.png' %}" alt="Cool Admin" />
         </a>
     </div>
     <div class="menu-sidebar__content js-scrollbar1">
         <nav class="navbar-sidebar">
             <ul class="list-unstyled navbar__list">
                 <li class="active">
-                    <a href="{% url 'home_page' %}"><i class="fas fa-tachometer-alt"></i>Dashboard</a>
-                </li>
-                <li>
-                    <a href="{% url 'author_list' %}"><i class="fas fa-chart-bar"></i>Authors</a>
+                    <a href="{% url 'main_dashboard' %}"><i class="fas fa-tachometer-alt"></i>Dashboard</a>
                 </li>
                 <li>
                     <a href="{% url 'category_list' %}"><i class="fas fa-chart-bar"></i>Categories</a>
                 </li>
                 <li>
-                    <a href="{% url 'book_list' %}"><i class="fas fa-chart-bar"></i>Books</a>
+                    <a href="{% url 'product_list' %}"><i class="fas fa-chart-bar"></i>Products</a>
                 </li>
 
             </ul>
