@@ -8,4 +8,4 @@ def index(request):
     return render(request, 'food/index.html',ctx)
 
 def main_order(request):
-    return  render(request, 'product/order.html')
+    return  render(request, 'food/order.html')
