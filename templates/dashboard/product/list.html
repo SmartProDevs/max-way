@@ -29,7 +29,13 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Name</th>
+                                        <th>Title</th>
+                                        <th>Description</th>
+                                        <th>Cost</th>
+                                        <th>Price</th>
+                                        <th>Image</th>
+                                        <th>Created at</th>
+
                                         <th></th>
 
                                     </tr>
@@ -38,7 +44,12 @@
                                     {% for product in products %}
                                     <tr>
                                         <td>{{ product.id }}</td>
-                                        <td>{{ product.name }}</td>
+                                        <td>{{ product.title }}</td>
+                                        <td>{{ product.description }}</td>
+                                        <td>{{ product.cost }}</td>
+                                        <td>{{ product.price }}</td>
+                                        <td><img src="{{ product.image }}" alt="{{ product.image }}"></td>
+                                        <td>{{ product.created_at }}</td>
 
                                         <td>
                                             <div class="table-data-feature">

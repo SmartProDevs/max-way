@@ -144,7 +144,7 @@ def product_create(request):
 @login_required_decarator
 def product_edit(request,pk):
     model = Product.objects.get(pk=pk)
-    form = forms.ProductForm(request.POST or None, instance = model)
+    form = forms.ProductForm(request.POST or None, request.FILES or None, instance = model)
     if request.POST and form.is_valid():
         form.save()
         return redirect('product_list')

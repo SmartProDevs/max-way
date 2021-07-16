@@ -27,11 +27,16 @@
                                 <small> Form</small>
                             </div>
                             <div class="card-body card-block">
-                                <form method="post">
+                                <form method="post" enctype="multipart/form-data">
                                     {% csrf_token %}
                                     <div class="form-group">
                                         <label for="name" class=" form-control-label">Name</label>
-                                        <input type="text" id="name" name="name" placeholder="Enter  Name" class="form-control" value="{{ model.name }}">
+                                        {{form.title}}
+                                        {{form.description}}
+                                        {{form.category_id}}
+                                        {{form.price}}
+                                        {{form.cost}}
+                                        {{form.image}}
                                     </div>
 
                                     {% if model %}
