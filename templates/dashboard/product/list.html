@@ -29,11 +29,11 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
+                                         <th>Image</th>
                                         <th>Title</th>
                                         <th>Description</th>
                                         <th>Cost</th>
                                         <th>Price</th>
-                                        <th>Image</th>
                                         <th>Created at</th>
 
                                         <th></th>
@@ -44,11 +44,11 @@
                                     {% for product in products %}
                                     <tr>
                                         <td>{{ product.id }}</td>
+                                               <td> <img id="output" style="width:180px;height:180;" src="{% if product %}/media/{{ product.image }}{% endif %}"></td>
                                         <td>{{ product.title }}</td>
                                         <td>{{ product.description }}</td>
                                         <td>{{ product.cost }}</td>
                                         <td>{{ product.price }}</td>
-                                        <td><img src="{{ product.image }}" alt="{{ product.image }}"></td>
                                         <td>{{ product.created_at }}</td>
 
                                         <td>
@@ -75,4 +75,14 @@
     <!-- END MAIN CONTENT-->
     <!-- END PAGE CONTAINER-->
 </div>
+     <script>
+  var loadFile = function(event) {
+    var reader = new FileReader();
+    reader.onload = function(){
+      var output = document.getElementById('output');
+      output.src = reader.result;
+    };
+    reader.readAsDataURL(event.target.files[0]);
+  };
+</script>
 {% endblock %}

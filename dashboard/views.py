@@ -79,59 +79,18 @@ def category_delete(request,pk):
     return  redirect("category_list")
 #############product#########################################
 @login_required_decarator
-def category_list(request):
-    categories = Category.objects.all()
-    ctx = {
-        'categories':categories
-    }
-    return render(request, "dashboard/category/list.html",ctx)
-
-@login_required_decarator
-def category_create(request):
-    model = Category()
-    form = forms.CategoryForm(request.POST or None, instance=model)
-
-    if request.POST and form.is_valid():
-        form.save()
-        return redirect('category_list')
-    ctx = {
-        'model':model,
-        'form': form
-    }
-    return render(request, 'dashboard/category/form.html',ctx)
-
-@login_required_decarator
-def category_edit(request,pk):
-    model = Category.objects.get(pk=pk)
-    form = forms.CategoryForm(request.POST or None, instance=model)
-
-    if request.POST and form.is_valid():
-        form.save()
-        return redirect('category_list')
-    ctx = {
-        'model':model,
-        'form': form
-    }
-    return render(request, 'dashboard/category/form.html',ctx)
-
-@login_required_decarator
-def category_delete(request,pk):
-    model = Category.objects.get(pk=pk)
-    model.delete()
-    return  redirect("category_list")
-
-@login_required_decarator
 def product_list(request):
-    model = Product.objects.all()
+    products = Product.objects.all()
     ctx = {
-        'model':model
+        'products':products
     }
-    return render(request, 'dashboard/product/form.html',ctx)
+    return render(request, "dashboard/product/list.html",ctx)
 
 @login_required_decarator
 def product_create(request):
     model = Product()
-    form = forms.ProductForm(request.POST or None, instance = model)
+    form = forms.ProductForm(request.POST or None,request.FILES or None, instance=model)
+
     if request.POST and form.is_valid():
         form.save()
         return redirect('product_list')
@@ -139,12 +98,13 @@ def product_create(request):
         'model':model,
         'form': form
     }
-    return render(request,'dashboard/product/form.html',ctx)
+    return render(request, 'dashboard/product/form.html',ctx)
 
 @login_required_decarator
 def product_edit(request,pk):
     model = Product.objects.get(pk=pk)
-    form = forms.ProductForm(request.POST or None, request.FILES or None, instance = model)
+    form = forms.ProductForm(request.POST or None,request.FILES or None, instance=model)
+
     if request.POST and form.is_valid():
         form.save()
         return redirect('product_list')
@@ -152,9 +112,10 @@ def product_edit(request,pk):
         'model':model,
         'form': form
     }
-    return render(request,'dashboard/product/form.html',ctx)
+    return render(request, 'dashboard/product/form.html',ctx)
 
+@login_required_decarator
 def product_delete(request,pk):
     model = Product.objects.get(pk=pk)
     model.delete()
-    return redirect('product_list')
+    return  redirect("product_list")

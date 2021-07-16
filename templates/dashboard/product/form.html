@@ -30,12 +30,17 @@
                                 <form method="post" enctype="multipart/form-data">
                                     {% csrf_token %}
                                     <div class="form-group">
-                                        <label for="name" class=" form-control-label">Name</label>
+                                        <label class=" form-control-label">Name</label>
                                         {{form.title}}
+                                        <label  class=" form-control-label">Description</label>
                                         {{form.description}}
-                                        {{form.category_id}}
+                                        <label  class=" form-control-label">Category</label>
+                                        {{form.category}}
+                                        <label  class=" form-control-label">Price</label>
                                         {{form.price}}
+                                        <label  class=" form-control-label">Cost</label>
                                         {{form.cost}}
+                                        <label  class=" form-control-label">Image</label>
                                         {{form.image}}
                                     </div>
 
