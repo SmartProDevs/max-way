@@ -30,8 +30,9 @@
                                 <form method="post">
                                     {% csrf_token %}
                                     <div class="form-group">
-                                        <label for="name" class=" form-control-label">Name</label>
-                                        <input type="text" id="name" name="name" placeholder="Enter  Name" class="form-control" value="{{ model.name }}">
+                                        <label class=" form-control-label">Title</label>
+                                        {{ form.title }}
+
                                     </div>
 
                                     {% if model %}
