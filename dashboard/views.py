@@ -8,7 +8,7 @@ from . import forms
 def login_required_decarator(func):
     return login_required(func, login_url='login_page')
 
-login_required_decarator
+@login_required_decarator
 def main_dashboard(request):
     categories = Category.objects.all()
     products = Category.objects.all()
@@ -28,8 +28,8 @@ def login_page(request):
         user = authenticate(username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect(request,'main_dashboard')
-    return redirect(request,'login_page')
+            return redirect('main_dashboard')
+    return render(request,'dashboard/login.html')
 
 @login_required_decarator
 def logout_page(request):
