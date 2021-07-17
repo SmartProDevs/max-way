@@ -4,6 +4,8 @@ from config.settings import MEDIA_ROOT
 def index(request):
     categories = Category.objects.all()
     products = Product.objects.all()
+    print(categories)
+    print(products)
     ctx={
         'categories':categories,
         'products': products,
