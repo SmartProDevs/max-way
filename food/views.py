@@ -14,14 +14,8 @@ def home_page(request):
 def index(request):
     categories = Category.objects.all()
     products = Product.objects.all()
-<<<<<<< HEAD
     print(categories)
     print(products)
-    ctx={
-        'categories':categories,
-=======
-
-
     orders = []
     orders_list = request.COOKIES.get("orders")
     total_price = request.COOKIES.get("total_price")
@@ -36,7 +30,6 @@ def index(request):
             )
     ctx = {
         'categories': categories,
->>>>>>> 78c4d0a031779e99c37f10f51e4c7e124e8c6e07
         'products': products,
         'orders':orders,
         'total_price':total_price,
