@@ -1,6 +1,6 @@
 import json
 
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import JsonResponse
 from .models import *
 from .services import *
@@ -63,3 +63,6 @@ def main_order(request):
     response.set_cookie("greeting", 'hello')
     return response
 
+def send_order(request):
+
+    return redirect(index)

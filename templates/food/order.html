@@ -225,7 +225,7 @@
                             <div class="sum">
                                 <h2> Оплата по терминалу </h2>
                                 <h4>Оплата принимается через банковские карты UzCard.</h4>
-                                <input class="radio" name="payment-type" id="1" value="терминал" type="radio">
+                                <input class="radio" name="payment-type" id="2" value="терминал" type="radio">
                             </div>
                         </div>
                     </div>
@@ -279,7 +279,7 @@
                             </div>
                         </div>
                         <div class="button">
-                            <a href="#">Отправить</a>
+                            <a href="{% url 'send_order' %}">Отправить</a>
                         </div>
                     </div>
                 </form>
