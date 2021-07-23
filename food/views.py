@@ -5,7 +5,7 @@ from django.http import JsonResponse
 from .models import *
 from .services import *
 from config.settings import MEDIA_ROOT
-
+from .forms import *
 def home_page(request):
     if request.GET:
         product = get_product_by_id(request.GET.get("product_id", 0))
@@ -38,6 +38,13 @@ def index(request):
     return response
 
 def main_order(request):
+    model=Customer
+    form = CustomerForm(request.POST or None, instance=model)
+    if request.POST:
+        if form.is_valid():
+            form.save()
+            return redirect(index)
+
     categories = Category.objects.all()
     products = Product.objects.all()
     orders = []
@@ -56,13 +63,15 @@ def main_order(request):
         'products': products,
         'orders':orders,
         'total_price':total_price,
-        'MEDIA_ROOT': MEDIA_ROOT
+        'MEDIA_ROOT': MEDIA_ROOT,
+        'form':form,
+        'model': model
     }
 
     response = render(request, 'food/order.html', ctx)
     response.set_cookie("greeting", 'hello')
     return response
 
-def send_order(request):
-
-    return redirect(index)
+# def send_order(request):
+#     return redirect(index)
+    # return render(request,'food/order.html')

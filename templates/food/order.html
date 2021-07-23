@@ -205,9 +205,9 @@
                 <form id="second_form">
                     <div class="contact">
                         <p>КОНТАКТНАЯ ИНФОРМАЦИЯ</p><br>
-                        <input class="input" type="text" placeholder="Имя*">
+                        <input class="input" name="first_name" type="text" placeholder="Имя*">
                         <div>&nbsp;</div>
-                        <input class="input" type="text" placeholder="Фамилия*">
+                        <input class="input" name="last_name" type="text" placeholder="Фамилия*">
                         <div>&nbsp;</div>
                     </div>
                     <div class="all">
@@ -217,7 +217,7 @@
                                 <h2> Наличный расчет </h2>
                                 <h4>Оплата принимается в узбекских сумах в наших магазинах или курьеру при получении
                                     товара.</h4>
-                                <input class="radio" name="payment-type" id="1" value="Наличный" type="radio">
+                                <input class="radio" name="payment_type" id="1" value="Наличный" type="radio">
                             </div>
                         </div>
                         <div class="card">
@@ -225,14 +225,14 @@
                             <div class="sum">
                                 <h2> Оплата по терминалу </h2>
                                 <h4>Оплата принимается через банковские карты UzCard.</h4>
-                                <input class="radio" name="payment-type" id="2" value="терминал" type="radio">
+                                <input class="radio" name="payment_type" id="2" value="терминал" type="radio">
                             </div>
                         </div>
                     </div>
 
                     <div class="div">
                         <p>«Адрес, Ориентир»*</p>
-                        <textarea class="text" name="" id="" cols="30" rows="10"></textarea>
+                        <textarea class="text" name="address" id="" cols="30" rows="10"></textarea>
 
                     </div>
                     <div class="gamburger">
@@ -279,7 +279,7 @@
                             </div>
                         </div>
                         <div class="button">
-                            <a href="{% url 'send_order' %}">Отправить</a>
+                            <a href="#" id="submit" onclick="document.getElementById('second_form').submit()">Отправить</a>
                         </div>
                     </div>
                 </form>
@@ -436,6 +436,7 @@ function cart_add(product_id){
 
 
         </script>
+
     </div>
 </div>
 </body>
