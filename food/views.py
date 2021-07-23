@@ -14,12 +14,9 @@ def home_page(request):
 def index(request):
     categories = Category.objects.all()
     products = Product.objects.all()
-    print(categories)
-    print(products)
     orders = []
     orders_list = request.COOKIES.get("orders")
     total_price = request.COOKIES.get("total_price")
-    print(orders_list)
     if orders_list:
         for key, val in json.loads(orders_list).items():
             orders.append(
@@ -35,14 +32,34 @@ def index(request):
         'total_price':total_price,
         'MEDIA_ROOT': MEDIA_ROOT
     }
-    print(orders)
-    for i in orders:
-        print(i['product'].image)
-
 
     response = render(request, 'food/index.html', ctx)
     response.set_cookie("greeting", 'hello')
     return response
 
 def main_order(request):
-    return  render(request, 'food/order.html')
+    categories = Category.objects.all()
+    products = Product.objects.all()
+    orders = []
+    orders_list = request.COOKIES.get("orders")
+    total_price = request.COOKIES.get("total_price")
+    if orders_list:
+        for key, val in json.loads(orders_list).items():
+            orders.append(
+                {
+                "product": Product.objects.get(pk=int(key)),
+                "count": val
+                }
+            )
+    ctx = {
+        'categories': categories,
+        'products': products,
+        'orders':orders,
+        'total_price':total_price,
+        'MEDIA_ROOT': MEDIA_ROOT
+    }
+
+    response = render(request, 'food/order.html', ctx)
+    response.set_cookie("greeting", 'hello')
+    return response
+
