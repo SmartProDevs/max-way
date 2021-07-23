@@ -202,44 +202,44 @@
         <div class="account">
             <div class="phone">
                 <p> ВЕРИФИКАЦИЯ ТЕЛЕФОНА*</p><br>
-                <form name="form1" action="#">
-                    <input class="input" type="text" name="num" placeholder="Ваш номер"  onchange="validate(document.form1.num); visibility()">
-
-                </form>
+                <input class="input" id="number-id" type="text" name="num" placeholder="Ваш номер"
+                       onchange="validate()">
             </div>
             <div id="second_div" style="visibility: hidden">
-                <div class="contact">
-                    <p>КОНТАКТНАЯ ИНФОРМАЦИЯ</p><br>
-                    <input class="input" type="text" placeholder="Имя*">
-                    <div>&nbsp;</div>
-                    <input class="input" type="text" placeholder="Фамилия*">
-                    <div>&nbsp;</div>
-                </div>
-                <div class="all">
-                    <div class="card">
-                        <p>СПОСОБЫ ОПЛАТЫ*</p>
-                        <div class="sum">
-                            <h2> Наличный расчет </h2>
-                            <h4>Оплата принимается в узбекских сумах в наших магазинах или курьеру при получении
-                                товара.</h4>
-                            <input class="radio" id="1" value="Наличный" type="checkbox">
+                <form id="second_form">
+                    <div class="contact">
+                        <p>КОНТАКТНАЯ ИНФОРМАЦИЯ</p><br>
+                        <input class="input" type="text" placeholder="Имя*">
+                        <div>&nbsp;</div>
+                        <input class="input" type="text" placeholder="Фамилия*">
+                        <div>&nbsp;</div>
+                    </div>
+                    <div class="all">
+                        <div class="card">
+                            <p>СПОСОБЫ ОПЛАТЫ*</p>
+                            <div class="sum">
+                                <h2> Наличный расчет </h2>
+                                <h4>Оплата принимается в узбекских сумах в наших магазинах или курьеру при получении
+                                    товара.</h4>
+                                <input class="radio" name="payment-type" id="1" value="Наличный" type="radio">
+                            </div>
+                        </div>
+                        <div class="card">
+                            <p>СПОСОБЫ ОПЛАТЫ*</p>
+                            <div class="sum">
+                                <h2> Оплата по терминалу </h2>
+                                <h4>Оплата принимается через банковские карты UzCard.</h4>
+                                <input class="radio" name="payment-type" id="1" value="терминал" type="radio">
+                            </div>
                         </div>
                     </div>
-                    <div class="card">
-                        <p>СПОСОБЫ ОПЛАТЫ*</p>
-                        <div class="sum">
-                            <h2> Оплата по терминалу </h2>
-                            <h4>Оплата принимается через банковские карты UzCard.</h4>
-                            <input class="radio" id="1" value="терминал" type="checkbox">
-                        </div>
+
+                    <div class="div">
+                        <p>«Адрес, Ориентир»*</p>
+                        <textarea class="text" name="" id="" cols="30" rows="10"></textarea>
+
                     </div>
-                </div>
-
-                <div class="div">
-                    <p>«Адрес, Ориентир»*</p>
-                    <textarea class="text" name="" id="" cols="30" rows="10"></textarea>
-
-                </div>
+                </form>
             </div>
         </div>
         <div class="gamburger">
@@ -278,30 +278,26 @@
                 <a href="#">Отправить</a>
             </div>
         </div>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
         <script>
+            function validate(){
 
-            function validate(inputtxt){
-            console.log(inputtxt)
+                inputtxt = document.getElementById("number-id");
                 var phoneno = /^\(?([0-9]{3})\)?[-. ]?([0-9]{2})[-. ]?([0-9]{3})[-. ]?([0-9]{2})[-. ]?([0-9]{2})$/;
 
-                if(inputtxt.value.match(phoneno))
-               {
+                if(inputtxt.value.match(phoneno)){
 
-	            return true;
+                     document.getElementById('second_div').style.visibility = 'visible';
+
 	            }
-             else
-                {
-
+                else{
 	                alert("Telefon raqam mavjud emas");
 	                document.getElementById('second_div').style.visibility = 'hidden';
 	                return false;
                 }
             }
 
-            function visibility(){
-
-                document.getElementById('second_div').style.visibility = 'visible';}
-
-
-
         </script>
+    </div>
+</div>
+</body>

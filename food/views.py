@@ -45,4 +45,4 @@ def index(request):
     return response
 
 def main_order(request):
-    return  render(request, 'food/order.html')
+    return render(request, 'food/order.html')
