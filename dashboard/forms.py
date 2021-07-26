@@ -22,6 +22,7 @@ class ProductForm(forms.ModelForm):
             "category": forms.Select(attrs={'class': 'form-control'}),
             "image": forms.FileInput(attrs={
                         'class': 'form-control',
+
                         'onchange': 'loadFile(event)'
                     }
             ),

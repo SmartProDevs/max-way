@@ -11,6 +11,11 @@ def home_page(request):
         product = get_product_by_id(request.GET.get("product_id", 0))
         return JsonResponse(product)
 
+def order_page(request):
+    if request.GET:
+        user = get_user_by_phone(request.GET.get("phone_number",0))
+        return JsonResponse(user)
+
 def index(request):
     categories = Category.objects.all()
     products = Product.objects.all()
@@ -38,12 +43,39 @@ def index(request):
     return response
 
 def main_order(request):
-    model=Customer
-    form = CustomerForm(request.POST or None, instance=model)
+    model=Customer()
     if request.POST:
+        try:
+            model = Customer.objects.get(phone_number=request.POST.get("phone_number", ""))
+        except:
+            model = Customer()
+        form = CustomerForm(request.POST or None, instance=model)
         if form.is_valid():
-            form.save()
-            return redirect(index)
+            customer = form.save()
+            formOrder = OrderForm(request.POST or None, instance=Order())
+            if formOrder.is_valid():
+                order = formOrder.save(customer=customer)
+                print("order:",order)
+                orders_list = request.COOKIES.get("orders")
+
+
+                for key,value in json.loads(orders_list).items():
+                    product = get_product_by_id(int(key))
+
+                    counts = value
+                    order_product = OrderProduct(
+                        count=counts,
+                        price = product['price'],
+                        product_id = product['id'],
+                        order_id = order.id
+                    )
+                    order_product.save()
+
+                return redirect("index")
+            else:
+                print(formOrder.errors)
+        else:
+            print(form.errors)
 
     categories = Category.objects.all()
     products = Product.objects.all()
@@ -64,8 +96,6 @@ def main_order(request):
         'orders':orders,
         'total_price':total_price,
         'MEDIA_ROOT': MEDIA_ROOT,
-        'form':form,
-        'model': model
     }
 
     response = render(request, 'food/order.html', ctx)

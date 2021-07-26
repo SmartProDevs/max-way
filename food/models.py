@@ -18,20 +18,17 @@ class Product(models.Model):
 class Customer(models.Model):
     first_name = models.CharField(null=False, blank=False,max_length=100)
     last_name = models.CharField(null=False, blank=False,max_length=100)
-    phone_number = models.CharField(null=False, blank=False,max_length=100)
+    phone_number = models.CharField(null=False, unique=True ,blank=False,max_length=100)
     created_at = models.DateTimeField(auto_now_add=True)
 
 class Order(models.Model):
     payment_type = models.IntegerField(null=False, blank=False)
-    status = models.IntegerField(null=False, blank=False)
+    status = models.IntegerField(null=False, blank=True, default=1)
     address = models.CharField(null=False, blank=False, max_length=250)
-    customer = models.ForeignKey(Customer, null=True, on_delete=models.SET_NULL)
+    customer = models.ForeignKey(Customer, blank=True, null=True, on_delete=models.SET_NULL)
     created_at = models.DateTimeField(auto_now_add=True)
 
 class OrderProduct(models.Model):
-    title = models.CharField(null=False, blank=False, max_length=100)
-    description = models.TextField(null=False, blank=False)
-    category = models.ForeignKey(Category, null=True, on_delete=models.SET_NULL)
     count = models.IntegerField(null=False, blank=False)
     price = models.IntegerField(null=False, blank=False)
     created_at = models.DateTimeField(auto_now_add=True)

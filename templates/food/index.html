@@ -694,6 +694,7 @@ function cart_add(product_id){
             url: "{% url 'home_page' %}",
             data: {"product_id": parseInt(key)},
             success: function (response) {
+
                 price = parseInt(getCookie("total_price")) + parseInt(response["price"]) * parseInt(orders[key]);
         setCookie("total_price", price);
 
