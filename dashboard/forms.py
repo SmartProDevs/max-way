@@ -1,5 +1,5 @@
 from django import forms
-from food.models import Category, Product
+from food.models import *
 
 class CategoryForm(forms.ModelForm):
     class Meta:
@@ -26,4 +26,13 @@ class ProductForm(forms.ModelForm):
                         'onchange': 'loadFile(event)'
                     }
             ),
+    }
+
+class UserForm(forms.ModelForm):
+    model = Customer
+    field = "__all__"
+    widjets = {
+        "first_name": forms.TextInput(attrs={'class': 'form-control'}),
+        "last_name": forms.TextInput(attrs={'class': 'form-control'}),
+        "phone_number": forms.TextInput(attrs={'class': 'form-control'}),
     }

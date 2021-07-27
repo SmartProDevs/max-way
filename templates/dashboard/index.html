@@ -13,7 +13,8 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="overview-wrap">
-                            <h2 class="title-1">overview</h2>
+                             <h3 class="title-2 m-b-40">Single Bar Chart</h3>
+                             <canvas id="Chart1"></canvas>
 
                         </div>
                     </div>
@@ -83,6 +84,59 @@
     <!-- END MAIN CONTENT-->
     <!-- END PAGE CONTAINER-->
 </div>
+<script>
+(function ($){
+  try {
+
+
+    var ctx = document.getElementById("CategoryBarChart");
+    if (ctx) {
+      ctx.height = 150;
+      var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: [{% for cb in categories_books %}"{{ cb.category }}",{% endfor %}],
+          datasets: [
+            {
+              label: "My First dataset",
+              data: [{% for cb in categories_books %}"{{ cb.book }}",{% endfor %}],
+              borderColor: "rgba(0, 123, 255, 0.9)",
+              borderWidth: "0",
+              backgroundColor: "rgba(0, 123, 255, 0.5)"
+            }
+          ]
+        },
+        options: {
+          legend: {
+            position: 'top',
+            labels: {
+              fontFamily: 'Poppins'
+            }
+
+          },
+          scales: {
+            xAxes: [{
+              ticks: {
+                fontFamily: "Poppins"
+
+              }
+            }],
+            yAxes: [{
+              ticks: {
+                beginAtZero: true,
+                fontFamily: "Poppins"
+              }
+            }]
+          }
+        }
+      });
+    }
+
+  } catch (error) {
+    console.log(error);
+  }
+})(jQuery);
+</script>
 {% endblock %}
 
 

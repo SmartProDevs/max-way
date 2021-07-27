@@ -29,34 +29,29 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                         <th>Image</th>
-                                        <th>Title</th>
-                                        <th>Description</th>
-                                        <th>Cost</th>
-                                        <th>Price</th>
+                                         <th>First name</th>
+                                        <th>Last name</th>
+                                        <th>Phone number</th>
                                         <th>Created at</th>
-
                                         <th></th>
 
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {% for product in products %}
+                                    {% for user in users %}
                                     <tr>
-                                        <td>{{ product.id }}</td>
-                                               <td> <img id="output" style="width:180px;height:180;" src="{% if product %}/media/{{ product.image }}{% endif %}"></td>
-                                        <td>{{ product.title }}</td>
-                                        <td>{{ product.description }}</td>
-                                        <td>{{ product.cost }}</td>
-                                        <td>{{ product.price }}</td>
-                                        <td>{{ product.created_at }}</td>
+                                        <td>{{ user.id }}</td>
+                                        <td>{{ user.first_name }}</td>
+                                        <td>{{ user.last_name }}</td>
+                                        <td>{{ user.phone_number }}</td>
+                                        <td>{{ user.created_at }}</td>
 
                                         <td>
                                             <div class="table-data-feature">
-                                                <a class="item" data-toggle="tooltip" href="{% url 'product_edit' pk=product.id %}" data-placement="top" title="" data-original-title="Edit">
+                                                <a class="item" data-toggle="tooltip" href="{% url 'user_edit' pk=user.id %}" data-placement="top" title="" data-original-title="Edit">
                                                     <i class="zmdi zmdi-edit text-warning"></i>
                                                 </a>
-                                                <a class="item" data-toggle="tooltip" href="{% url 'product_delete' pk=product.id %}" data-placement="top" title="" data-original-title="Delete">
+                                                <a class="item" data-toggle="tooltip" href="{% url 'user_delete' pk=user.id %}" data-placement="top" title="" data-original-title="Delete">
                                                     <i class="zmdi zmdi-delete text-danger"></i>
                                                 </a>
                                             </div>

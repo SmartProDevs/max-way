@@ -11,7 +11,8 @@ def login_required_decarator(func):
 @login_required_decarator
 def main_dashboard(request):
     categories = Category.objects.all()
-    products = Category.objects.all()
+    products = Product.objects.all()
+    orders = Order.objects.all()
     ctx = {
         "counts":{
             "categories":len(categories),
@@ -43,6 +44,56 @@ def category_list(request):
         'categories':categories
     }
     return render(request, "dashboard/category/list.html",ctx)
+
+@login_required_decarator
+def user_list(request):
+    users = Customer.objects.all()
+    ctx = {
+        'users':users
+    }
+    return render(request, "dashboard/user/list.html",ctx)\
+
+@login_required_decarator
+def order_list(request):
+    orders = Order.objects.all()
+    ctx = {
+        'orders':orders
+    }
+    return render(request, "dashboard/order/list.html",ctx)
+
+@login_required_decarator
+def user_create(request):
+    model = Customer()
+    form = forms.UserForm(request.POST or None, instance=model)
+
+    if request.POST and form.is_valid():
+        form.save()
+        return redirect('user_list')
+    ctx = {
+        'model':model,
+        'form': form
+    }
+    return render(request, 'dashboard/user/form.html',ctx)
+
+@login_required_decarator
+def user_edit(request, pk):
+    model = Customer.objects.get(pk=pk)
+    form = forms.UserForm(request.POST or None, instance=model)
+
+    if request.POST and form.is_valid():
+        form.save()
+        return redirect('user_list')
+    ctx = {
+        'model':model,
+        'form': form
+    }
+    return render(request, 'dashboard/user/form.html',ctx)
+
+@login_required_decarator
+def user_delete(request,pk):
+    model = Customer.objects.get(pk=pk)
+    model.delete()
+    return  redirect("category_list")
 
 @login_required_decarator
 def category_create(request):

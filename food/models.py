@@ -14,12 +14,16 @@ class Product(models.Model):
     price = models.IntegerField(null=False, blank=False)
     image = models.ImageField(upload_to='products')
     created_at = models.DateTimeField(auto_now_add=True)
+    def __str__(self):
+        return f"{self.title}"
 
 class Customer(models.Model):
     first_name = models.CharField(null=False, blank=False,max_length=100)
     last_name = models.CharField(null=False, blank=False,max_length=100)
     phone_number = models.CharField(null=False, unique=True ,blank=False,max_length=100)
     created_at = models.DateTimeField(auto_now_add=True)
+    def __str__(self):
+        return f"{self.first_name} {self.last_name}"
 
 class Order(models.Model):
     payment_type = models.IntegerField(null=False, blank=False)
@@ -27,6 +31,8 @@ class Order(models.Model):
     address = models.CharField(null=False, blank=False, max_length=250)
     customer = models.ForeignKey(Customer, blank=True, null=True, on_delete=models.SET_NULL)
     created_at = models.DateTimeField(auto_now_add=True)
+
+
 
 class OrderProduct(models.Model):
     count = models.IntegerField(null=False, blank=False)
