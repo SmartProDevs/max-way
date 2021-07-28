@@ -13,12 +13,29 @@ def login_required_decarator(func):
 def main_dashboard(request):
     categories = Category.objects.all()
     products = Product.objects.all()
+    customers = Customer.objects.all()
     orders = Order.objects.all()
+    categories_products = []
+    table_list=services.get_table()
+    print(table_list)
+    for category in categories:
+        categories_products.append(
+            {
+                "category": category.title,
+                "product": len(Product.objects.filter(category_id=category.id))
+            }
+        )
+
     ctx = {
-        "counts":{
+        "counts": {
             "categories":len(categories),
-            "products": len(products)
+            "products": len(products),
+            "customers": len(customers),
+            "orders": len(orders),
+
         },
+        "categories_products": categories_products,
+        "table_list": table_list,
 
     }
     return render(request, 'dashboard/index.html',ctx)

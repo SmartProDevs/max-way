@@ -29,3 +29,17 @@ def get_product_by_order(id):
          INNER JOIN food_product ON food_orderproduct.product_id=food_product.id  where order_id=%s""",[id])
         orderproduct = dictfetchall(cursor)
         return orderproduct
+
+def get_table():
+    with closing(connection.cursor()) as cursor:
+        cursor.execute(""" 
+        SELECT food_orderproduct.product_id, 
+COUNT(food_orderproduct.product_id),food_product.title 
+FROM food_orderproduct 
+INNER JOIN food_product ON food_product.id=food_orderproduct.product_id 
+GROUP BY food_orderproduct.product_id ,food_product.title 
+order by count desc limit 10
+
+        """)
+        table = dictfetchall(cursor)
+        return table

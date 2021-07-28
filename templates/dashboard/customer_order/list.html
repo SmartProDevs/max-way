@@ -27,6 +27,7 @@
                                         <th>status</th>
                                         <th>Payment type</th>
                                         <th>Created at</th>
+                                        <th>Cart</th>
 <!--                                        <th>Product Count</th>-->
 
 
@@ -36,12 +37,13 @@
                                     {% for co in customer_orders %}
                                     <tr>
                                         <td>{{ co.id }}</td>
-                                        <td><a href="{% url 'orderproduct_list' id=co.id %}">{{ co.first_name }}</a> </td>
+                                        <td>{{ co.first_name }} </td>
                                         <td>{{ co.last_name }}</td>
                                         <td>{{ co.address }}</td>
                                         <td>{{ co.status }}</td>
                                         <td>{% if order.payment_type == 1 %}naqd{% else %}karta{% endif %}</td>
                                         <td>{{ co.created_at }}</td>
+                                        <td><a href="{% url 'orderproduct_list' id=co.id %}"><i class="fas fa-eye fa-lg" style="color:grey"></i></a></td>
 <!--                                        <td>{{ category.product_count }}</td>-->
 
 
