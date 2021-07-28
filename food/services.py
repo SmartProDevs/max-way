@@ -30,3 +30,4 @@ def get_user_by_phone(phone_number):
         cursor.execute(""" SELECT * from food_customer where phone_number =%s""",[phone_number])
         user = dictfetchone(cursor)
         return user
+

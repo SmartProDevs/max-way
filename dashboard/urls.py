@@ -21,4 +21,7 @@ urlpatterns = [
     path('user/<int:pk>/delete/', user_delete, name='user_delete'),
 
     path('order/list/', order_list, name="order_list"),
+    path('customer_order/<int:id>/list/', customer_order_list, name="customer_order_list"),
+
+    path('orderproduct/<int:id>/list/', orderproduct_list, name="orderproduct_list"),
 ]

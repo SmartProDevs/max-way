@@ -4,6 +4,7 @@ from django.contrib.auth import login, logout,authenticate
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
 from . import forms
+from . import services
 
 def login_required_decarator(func):
     return login_required(func, login_url='login_page')
@@ -170,3 +171,19 @@ def product_delete(request,pk):
     model = Product.objects.get(pk=pk)
     model.delete()
     return  redirect("product_list")
+
+@login_required_decarator
+def customer_order_list(request,id):
+    customer_orders = services.get_order_by_user(id=id)
+    ctx = {
+        'customer_orders': customer_orders
+    }
+    return render(request, "dashboard/customer_order/list.html", ctx)
+
+@login_required_decarator
+def orderproduct_list(request,id):
+    productorders = services.get_product_by_order(id=id)
+    ctx = {
+        'productorders': productorders
+    }
+    return render(request, "dashboard/productorder/list.html", ctx)
