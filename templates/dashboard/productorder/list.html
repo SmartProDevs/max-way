@@ -1,6 +1,7 @@
 
 {% extends 'dashboard/base.html' %}
 {% load static %}
+{% load mathfilters %}
 {% block content %}
  <div class="page-container">
     <!-- HEADER DESKTOP-->
@@ -30,6 +31,7 @@
                                         <th>Product</th>
                                          <th>Price</th>
                                         <th>Count</th>
+                                        <th>Total</th>
                                         <th>Created at</th>
 
 
@@ -42,6 +44,7 @@
                                         <td>{{ pro.title }}</td>
                                         <td>{{ pro.price }}</td>
                                         <td>{{ pro.count }}</td>
+                                        <td>{{ pro.count|mul:pro.price }}</td>
                                         <td>{{ pro.created_at }}</td>
 
 

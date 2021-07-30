@@ -21,7 +21,7 @@ def index(request):
     products = Product.objects.all()
     orders = []
     orders_list = request.COOKIES.get("orders")
-    total_price = request.COOKIES.get("total_price")
+    total_price = request.COOKIES.get("total_price",0)
     if orders_list:
         for key, val in json.loads(orders_list).items():
             orders.append(
