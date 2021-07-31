@@ -63,7 +63,7 @@
             <button class="main"><span></span></button>
         </div>
         <div class="mobMenu__content">
-            <div class="mobMenu__content--img"><img src="{% static 'food/img/bitmap.png' %}" alt=""></div>
+            <div class="mobMenu__content--img"><img src="{% static 'food/img/Bitmap.png' %}" alt=""></div>
             <div class="mobMenu__content--decs">
                 <div class="mobMenu__content--title">Siz izlagan mazzali ta’mlar</div>
                 <div class="mobMenu__content--text">When an unknown printer took a galley of type scrambled it to make a
@@ -112,11 +112,13 @@
 
 </div>
 <button class="fixed--icon cart" id="cart"  data-totalitems="0" onclick="modal()">
-        <svg width="18" height="21" viewBox="0 0 18 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" clip-rule="evenodd"
-                  d="M4 7V5C4 2.23858 6.23858 0 9 0C11.7614 0 14 2.23858 14 5V7H17C17.5523 7 18 7.44772 18 8V20C18 20.5523 17.5523 21 17 21H1C0.447715 21 0 20.5523 0 20V8C0 7.44772 0.447715 7 1 7H4ZM4 9H2V19H16V9H14V11H12V9H6V11H4V9ZM12 5V7H6V5C6 3.34315 7.34315 2 9 2C10.6569 2 12 3.34315 12 5Z"
-                  fill="#F1B301"/>
-        </svg>
+<!--        <svg width="18" height="21" viewBox="0 0 18 21" fill="none" xmlns="http://www.w3.org/2000/svg">-->
+<!--            <path fill-rule="evenodd" clip-rule="evenodd"-->
+<!--                  d="M4 7V5C4 2.23858 6.23858 0 9 0C11.7614 0 14 2.23858 14 5V7H17C17.5523 7 18 7.44772 18 8V20C18 20.5523 17.5523 21 17 21H1C0.447715 21 0 20.5523 0 20V8C0 7.44772 0.447715 7 1 7H4ZM4 9H2V19H16V9H14V11H12V9H6V11H4V9ZM12 5V7H6V5C6 3.34315 7.34315 2 9 2C10.6569 2 12 3.34315 12 5Z"-->
+<!--                  fill="#F1B301"/>-->
+<!--        </svg>-->
+
+        <span id="home_price" style="color:yellow">{{ total_price|intcomma}} <span>UZS</span></span>
     </button>
 
 <div class="header">
@@ -192,7 +194,7 @@
                                       fill="#F1B301"/>
                             </svg>
                         </button>
-                        <div class="shop--text"><a href="#" onclick="modal()"> Korzina<br><span id="home_price">{{ total_price|intcomma}} <span>UZS</span></span></a>
+<!--                        <div class="shop&#45;&#45;text"><a href="#" onclick="modal()"> Korzina<br><span id="home_price">{{ total_price|intcomma}} <span>UZS</span></span></a>-->
                         </div>
                     </div>
                 </div>
@@ -205,7 +207,7 @@
                     type specimen
                 </div>
             </div>
-            <div class="header__content--img"><img src="{% static 'food/img/bitmap.png' %}" alt=""></div>
+            <div class="header__content--img"><img src="{% static 'food/img/Bitmap.png' %}" alt=""></div>
         </div>
         <div class="header__card">
             <div class="row">
@@ -732,6 +734,46 @@ function cart_add(product_id){
   })
 })
 </script>
+<!--<script>-->
+<!--$('.box__btn').on('click', function () {-->
+<!--        var cart = $('#cart');-->
+<!--        var imgtodrag = $(this).parent('.item').find("img").eq(0);-->
+<!--        if (imgtodrag) {-->
+<!--            var imgclone = imgtodrag.clone()-->
+<!--                .offset({-->
+<!--                top: imgtodrag.offset().top,-->
+<!--                left: imgtodrag.offset().left-->
+<!--            })-->
+<!--                .css({-->
+<!--                'opacity': '0.5',-->
+<!--                    'position': 'absolute',-->
+<!--                    'height': '150px',-->
+<!--                    'width': '150px',-->
+<!--                    'z-index': '100'-->
+<!--            })-->
+<!--                .appendTo($('body'))-->
+<!--                .animate({-->
+<!--                'top': cart.offset().top + 10,-->
+<!--                    'left': cart.offset().left + 10,-->
+<!--                    'width': 75,-->
+<!--                    'height': 75-->
+<!--            }, 1000, 'easeInOutExpo');-->
+
+<!--            setTimeout(function () {-->
+<!--                cart.effect("shake", {-->
+<!--                    times: 2-->
+<!--                }, 200);-->
+<!--            }, 1500);-->
+
+<!--            imgclone.animate({-->
+<!--                'width': 0,-->
+<!--                    'height': 0-->
+<!--            }, function () {-->
+<!--                $(this).detach()-->
+<!--            });-->
+<!--        }-->
+<!--    });-->
+<!--</script>-->
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 
 </body>
